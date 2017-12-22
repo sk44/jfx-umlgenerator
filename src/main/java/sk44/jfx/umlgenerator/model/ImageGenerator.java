@@ -7,6 +7,7 @@ package sk44.jfx.umlgenerator.model;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -20,6 +21,9 @@ import net.sourceforge.plantuml.SourceFileReader;
 public class ImageGenerator {
 
     public Path generateFrom(Path textFile) {
+        if (Files.exists(textFile) == false) {
+            throw new IllegalArgumentException(textFile.toString() + " does not exists.");
+        }
         try {
             SourceFileReader reader = new SourceFileReader(textFile.toFile());
             List<GeneratedImage> list = reader.getGeneratedImages();

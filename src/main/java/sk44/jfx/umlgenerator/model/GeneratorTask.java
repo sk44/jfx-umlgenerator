@@ -30,7 +30,7 @@ class GeneratorTask extends Task<Path> {
     @Override
     protected void failed() {
         super.failed();
-        updateMessage("Error.");
+        updateMessage("Error: " + getException().getMessage());
     }
 
     @Override
