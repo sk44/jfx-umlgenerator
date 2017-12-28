@@ -9,6 +9,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +21,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import sk44.jfx.umlgenerator.model.GeneratorService;
@@ -41,6 +44,8 @@ public class MainWindowController implements Initializable {
     @FXML
     private Label messageLabel;
 
+    private final BooleanProperty runningProperty = new SimpleBooleanProperty();
+
     private FileChooser fileChooser;
     private final GeneratorService service = new GeneratorService(new ImageGenerator());
 
@@ -54,6 +59,31 @@ public class MainWindowController implements Initializable {
 
     @FXML
     public void handleGenerateAction(ActionEvent e) {
+        generate();
+    }
+
+    @FXML
+    public void handleEnterOnPathBar(ActionEvent e) {
+        generate();
+    }
+
+    @FXML
+    public void handleKeyPressed(KeyEvent e) {
+        switch (e.getCode()) {
+            case R:
+            case F5:
+                generate();
+                break;
+            default:
+                // no-op
+                break;
+        }
+    }
+
+    private void generate() {
+        if (runningProperty.get()) {
+            return;
+        }
         Path text = Paths.get(pathBar.getText());
         service.execute(text);
     }
@@ -61,6 +91,7 @@ public class MainWindowController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        runningProperty.bind(service.runningProperty());
         generateButton.disableProperty().bind(service.runningProperty());
         progress.visibleProperty().bind(service.runningProperty());
         progress.setProgress(-1);

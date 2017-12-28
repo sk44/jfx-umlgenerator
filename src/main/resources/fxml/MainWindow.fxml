@@ -20,14 +20,14 @@
             <children>
                 <HBox spacing="10.0">
                     <children>
-                        <TextField fx:id="pathBar" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="pathBar" onAction="#handleEnterOnPathBar" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#handleBrowseAction" text="Browse..." />
                         <Button fx:id="generateButton" mnemonicParsing="false" onAction="#handleGenerateAction" text="Generate" />
                     </children>
                 </HBox>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
+                        <BorderPane onKeyPressed="#handleKeyPressed" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
                      <center>
                         <ScrollPane fx:id="scroll" BorderPane.alignment="CENTER">
                            <content>
