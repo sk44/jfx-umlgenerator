@@ -51,6 +51,11 @@ public class MainWindowController implements Initializable {
 
     @FXML
     public void handleBrowseAction(ActionEvent e) {
+        Path initialDir = Paths.get(this.pathBar.getText()).getParent();
+        if (initialDir != null && Files.exists(initialDir)) {
+            fileChooser.setInitialDirectory(initialDir.toFile());
+        }
+
         File selected = fileChooser.showOpenDialog(this.pathBar.getScene().getWindow());
         if (selected != null) {
             pathBar.setText(selected.getAbsolutePath());
@@ -102,7 +107,7 @@ public class MainWindowController implements Initializable {
 
         imageHolder.minWidthProperty().bind(Bindings.createDoubleBinding(() -> scroll.getViewportBounds().getWidth(), scroll.viewportBoundsProperty()));
         fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("text file", "*.txt"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("plantuml file", "*.puml"));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("all file", "*.*"));
     }
 

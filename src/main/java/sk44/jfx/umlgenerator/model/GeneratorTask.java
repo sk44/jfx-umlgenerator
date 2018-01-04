@@ -16,6 +16,7 @@ class GeneratorTask extends Task<Path> {
 
     private final Path sourceText;
     private final ImageGenerator generator;
+    private Path generatedImage;
 
     public GeneratorTask(Path sourceText, ImageGenerator generator) {
         this.sourceText = sourceText;
@@ -24,7 +25,8 @@ class GeneratorTask extends Task<Path> {
 
     @Override
     protected Path call() throws Exception {
-        return generator.generateFrom(sourceText);
+        generatedImage = generator.generateFrom(sourceText);
+        return generatedImage;
     }
 
     @Override
@@ -36,7 +38,12 @@ class GeneratorTask extends Task<Path> {
     @Override
     protected void succeeded() {
         super.succeeded();
-        updateMessage("Ready.");
+        // ないはず
+        if (generatedImage == null) {
+            updateMessage("No image found.");
+            return;
+        }
+        updateMessage("Generated: " + generatedImage.toString());
     }
 
     @Override
