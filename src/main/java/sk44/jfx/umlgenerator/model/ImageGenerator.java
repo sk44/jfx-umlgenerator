@@ -25,11 +25,11 @@ public class ImageGenerator {
             throw new IllegalArgumentException(textFile.toString() + " does not exists.");
         }
         try {
-            SourceFileReader reader = new SourceFileReader(textFile.toFile());
+            SourceFileReader reader = new SourceFileReader(textFile.toFile(), textFile.getParent().toFile(), "UTF-8");
             List<GeneratedImage> list = reader.getGeneratedImages();
             File png = list.get(0).getPngFile();
             return Paths.get(png.getAbsolutePath());
-        } catch (InterruptedException | IOException ex) {
+        } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
     }
