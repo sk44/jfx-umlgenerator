@@ -20,7 +20,7 @@
             <children>
                 <HBox spacing="10.0">
                     <children>
-                        <TextField fx:id="pathBar" onAction="#handleEnterOnPathBar" HBox.hgrow="ALWAYS" />
+                        <TextField fx:id="pathBar" onAction="#handleEnterOnPathBar" promptText="Enter plantuml file path" HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#handleBrowseAction" text="Browse..." />
                         <Button fx:id="generateButton" mnemonicParsing="false" onAction="#handleGenerateAction" text="Generate" />
                     </children>

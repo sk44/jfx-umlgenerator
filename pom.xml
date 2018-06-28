@@ -4,7 +4,7 @@
 
     <groupId>sk44</groupId>
     <artifactId>jfx-umlgenerator</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>jfx-umlgenerator</name>
@@ -12,6 +12,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mainClass>sk44.jfx.umlgenerator.MainApp</mainClass>
+        <identifier>pumlgen</identifier>
     </properties>
 
     <organization>
@@ -28,6 +29,7 @@
     </dependencies>
 
     <build>
+        <finalName>${identifier}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

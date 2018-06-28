@@ -107,7 +107,7 @@ public class MainWindowController implements Initializable {
 
         imageHolder.minWidthProperty().bind(Bindings.createDoubleBinding(() -> scroll.getViewportBounds().getWidth(), scroll.viewportBoundsProperty()));
         fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("plantuml file", "*.puml"));
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("plantuml file", "*.puml", "*.pu", "*.wsd"));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("all file", "*.*"));
     }
 
