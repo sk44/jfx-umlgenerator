@@ -4,7 +4,7 @@
 
     <groupId>sk44</groupId>
     <artifactId>jfx-umlgenerator</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>jfx-umlgenerator</name>
@@ -25,6 +25,11 @@
             <groupId>net.sourceforge.plantuml</groupId>
             <artifactId>plantuml</artifactId>
             <version>8059</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.juniversalchardet</groupId>
+            <artifactId>juniversalchardet</artifactId>
+            <version>1.0.3</version>
         </dependency>
     </dependencies>
 
